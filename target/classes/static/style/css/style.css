@@ -1,0 +1,47 @@
+.weather{
+    position:relative;
+    top:-40px;
+    left:30px;
+    text-align:center;
+/*    border:2px double darkblue;*/
+/*    background:#a4e7f5;*/
+    float:left;
+    width:150
+    height:30
+}
+#nameApp{
+    position:relative;
+    top:20px;
+}
+#weather_data{
+    margin: auto 10px;
+}
+.imageWeather{
+    width: 60px;
+    float:left
+}
+#temp{
+    float:right;
+}
+
+table{
+    border:2px;
+}
+#container_header{
+    background:#a0e8ea;
+    text-align:center;
+    height:100px;
+}
+
+#menu{
+/*    display:inline-block;*/
+/*    justify-content:center;*/
+/*    border:2px double darkblue;*/
+/*    width:600px;*/
+/*    height:30;*/
+}
+
+.menu_token{
+    display:inline-block;
+    padding:10px;
+}

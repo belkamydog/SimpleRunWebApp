@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link th:href="@{/style/css/style.css}" rel="stylesheet" />
+
+</head>
+<body>
+    <div th:insert="blocks/header.html :: header"></div>
+    <h3>Подробная информация о погоде</h3>
+        <table>
+            <tr>
+                <td>температура</td>
+                <td>ощущается</td>
+                <td>мин. температура</td>
+                <td>макс. температура</td>
+            </tr>
+            <tr>
+                <td th:text="${weather.main.temp}"></td>
+                <td th:text="${weather.main.feels_like}"></td>
+                <td th:text="${weather.main.temp_min}"></td>
+                <td th:text="${weather.main.temp_max}"></td>
+            </tr>
+</table>
+</body>
+</html>

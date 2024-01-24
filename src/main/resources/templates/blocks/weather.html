@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+      <div th:fragment="weather" class="weather">
+        <a href="/weather">
+          <div id="weather_data">
+            <img class="imageWeather" th:src="@{https://openweathermap.org/img/wn/{id}@2x.png(id=${weather.weather[0].icon})}" alt="weather.icon">
+            <h5 id="temp" th:text="@{{t}°C Казань (t=${temperature})}"></h5>
+          </div>
+        </a>
+      </div>
+</body>
+</html>

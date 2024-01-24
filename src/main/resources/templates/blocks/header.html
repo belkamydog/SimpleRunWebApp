@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="header" id="container_header">
+        <a id="nameApp" href="/"><h1 id="app.name">SimpleRun</h1></a>
+        <div id="header_weather" th:insert="blocks/weather.html :: weather"></div>
+        <div id="menu">
+            <a class="menu_token" href="calculate"><div>Калькулятор бега</div></a>
+            <a class="menu_token" href="/"><div>Личный кабинет</div></a>
+            <a class="menu_token" href="/"><div>Статьи</div></a>
+            <a class="menu_token" href="/"><div>О проекте</div></a>
+        </div>
+    </div>
+</body>
+</html>
