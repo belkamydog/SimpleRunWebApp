@@ -3,13 +3,23 @@ package simple.run.SimpleRunWebApp.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
+//@Component
 @Data
+@NoArgsConstructor
 public class CalcRun {
     private Time time;
     private Distance distance;
     private Time pace;
     private float speed;
+
+    public CalcRun(int hour, int min, int sec, int km, int meters){
+        time = new Time(hour, min, sec);
+        distance = new Distance(km, meters);
+        pace = new Time();
+        calculate();
+    }
 
     public CalcRun(Time time, Distance distance) {
         this.time = time;

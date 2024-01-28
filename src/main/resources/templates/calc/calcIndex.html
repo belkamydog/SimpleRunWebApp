@@ -6,18 +6,21 @@
     <title>Run Calculator</title>
 </head>
 <body>
-    <div th:insert="blocks/header.html :: header"></div>
+    <div th:insert="~{blocks/header.html :: header}"></div>
     <h3>Калькулятор темпа и скорости бега</h3>
     <div>
-        <div>час <input type="number" id="calc_hours" name="hours" min="0" max="24"></div>
-        <div>мин <input type="number" id="calc_minutes" name="min" min="0" max="60"></div>
-        <div>сек <input type="number" id="calc_seconds" name="sec" min="0" max="60"></div>
+        <form action="/calculate/calc" method="post">
+        <div>час <input type="number" id="calc_hours" name="time_hour" value="0" min="0" max="24"></div><br>
+        <div>мин <input type="number" id="calc_minutes" name="time_min" value="0" min="0" max="60"></div><br>
+        <div>сек <input type="number" id="calc_seconds" name="time_sec" value="0" min="0" max="60"></div><br>
         <h4>Дистанция</h4>
-        <div>км <input type="number" id="calc_distance_km" name="min" min="0" max="60"></div>
-        <div>метров <input type="number" id="calc_distance_met" name="sec" min="0" max="60"></div>
-        <form action="" method="post">
-            <button name="calculate" value="calculate_data">расчитать темп и скорость бега</button>
+        <div>км <input type="number" id="calc_distance_km" name="distance_km" value="0" min="0" max="1000"></div><br>
+        <div>метров <input type="number" id="calc_distance_met" name="distance_meters" value="0" min="0" max="1000"></div><br>
+            <input type="submit">расчитать темп и скорость бега</input>
         </form>
+        <br><br>
+        <p th:text="@{скорость: {speed} км/час(speed=${resultSpeed})}"></p>
+        <p th:text="@{темп: {min}:{sec} мин/км (min=${resultPaceMinute}, sec=${resultPaceSeconds})}"></p>
     </div>
 </body>
 </html>
