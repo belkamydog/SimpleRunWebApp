@@ -21,5 +21,6 @@ public class User {
     public User(String login, String password){
         this.name = login;
         this.password = password;
+        this.signIn = true;
     }
 }

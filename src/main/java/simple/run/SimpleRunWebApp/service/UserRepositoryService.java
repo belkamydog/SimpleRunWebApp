@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import simple.run.SimpleRunWebApp.models.User;
 import simple.run.SimpleRunWebApp.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserRepositoryService {
     @Autowired
@@ -14,8 +16,10 @@ public class UserRepositoryService {
         this.userRepository = userRepository;
     }
 
-    public User addAccount(User newUser){
+    public void addAccount(User newUser){
         userRepository.save(newUser);
-        return  newUser;
+    }
+    public Optional<User> findByLogin(String login){
+        return Optional.ofNullable(userRepository.findByName(login));
     }
 }
