@@ -8,6 +8,9 @@
 <body>
     <div th:insert="blocks/header.html :: header"></div>
     <a href="/registration"><h3>Зарегистрироваться</h3></a>
-<!--    <div th:insert="blocks/login.html :: login"></div>-->
+    <a href="/login"><h3>Войти</h3></a>
+    <form th:action="@{/login}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </body>
 </html>

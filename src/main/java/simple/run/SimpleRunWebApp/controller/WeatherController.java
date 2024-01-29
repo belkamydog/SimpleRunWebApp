@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import simple.run.SimpleRunWebApp.models.Weather;
+import simple.run.SimpleRunWebApp.service.UserRepositoryService;
 
 @Controller
 @RequestMapping("/weather")

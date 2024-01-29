@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/style/css/style.css}" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8">
+    <title>SimpleRun</title>
+</head>
+<body>
+    <div th:insert="blocks/header.html :: header"></div>
+    <a href="/registration"><h3>Зарегистрироваться</h3></a>
+    <a href="/login"><h3>Войти</h3></a>
+    <form th:action="@{/login}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <h3>About user:</h3>
+    <p th:text="${aboutUser}"></p>
+    <h3>Training List:</h3>
+    <table>
+        <tr th:each="i : ${trainings}">
+            <td th:text="${i}"></td>
+        </tr>
+    </table>
+    <br><br>
+    <div>
+        <h2>Добавить тренировку</h2>
+        <form action="/account/add_training" method="post">
+            <div>date<input type="date" name="date"></div><br>
+            <div>час <input type="number" id="calc_hours" name="time_hour" value="0" min="0" max="24"></div><br>
+            <div>мин <input type="number" id="calc_minutes" name="time_min" value="0" min="0" max="60"></div><br>
+            <div>сек <input type="number" id="calc_seconds" name="time_sec" value="0" min="0" max="60"></div><br>
+            <h4>Дистанция</h4>
+            <div>км <input type="number" id="calc_distance_km" name="distance_km" value="0" min="0" max="1000"></div><br>
+            <div>метров <input type="number" id="calc_distance_met" name="distance_meters" value="0" min="0" max="1000"></div><br>
+            <div>description <input type="text" id="desc" name="description" value=" "></div><br>
+            <input type="submit">
+        </form>
+    </div>
+
+
+</body>
+</html>

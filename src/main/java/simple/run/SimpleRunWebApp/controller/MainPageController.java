@@ -1,7 +1,6 @@
 package simple.run.SimpleRunWebApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +16,8 @@ public class MainPageController {
     @Autowired
     private Weather weather;
     private final UserRepositoryService userRepositoryService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public MainPageController(UserRepositoryService userRepositoryService) {
         this.userRepositoryService = userRepositoryService;
@@ -39,7 +40,7 @@ public class MainPageController {
                           @RequestParam("password") String password,
                           @RequestParam("repeat_password") String reply_password){
         if (password.equals(reply_password)){
-            userRepositoryService.addAccount(new User(login, password));
+            userRepositoryService.addAccount(new User(login, passwordEncoder.encode(password)));
         }
         return "auth/createUser";
     }
