@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+      <div th:fragment="login_form" class="login_form">
+        <a href="/login">
+          <div id="login_data">
+              <table>
+                  <tr><a href="/registration">Зарегистрироваться</a></tr>
+                  <tr><a href="/login">Войти</a></tr>
+                  <tr>
+                      <form th:action="@{/login}" method="post">
+                        <input type="submit" value="Sign Out"/>
+                      </form>
+                  </tr>
+                  <tr><a class="menu_token" href="/account"><h4 th:text="${userLogin}"></h4></a></tr>
+              </table>
+          </div>
+        </a>
+      </div>
+</body>
+</html>

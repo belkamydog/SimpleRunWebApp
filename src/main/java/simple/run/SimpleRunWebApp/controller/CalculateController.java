@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import simple.run.SimpleRunWebApp.configurations.WebSecurityConfig;
 import simple.run.SimpleRunWebApp.models.CalcRun;
 import simple.run.SimpleRunWebApp.models.Weather;
+import simple.run.SimpleRunWebApp.service.UserRepositoryService;
 import weather.app.model.weather.Root;
 
 @Controller
@@ -13,6 +15,8 @@ public class CalculateController {
     @Autowired
     private Weather weather;
     private CalcRun calcRun;
+    @Autowired
+    private UserRepositoryService userRepositoryService;
 
     @GetMapping("/calculate")
     public String calcMainPage(Model model){
@@ -47,5 +51,13 @@ public class CalculateController {
     @ModelAttribute("temperature")
     public int weatherTemp(){
         return weather.getTemperature();
+    }
+
+    @ModelAttribute("userLogin")
+    public String getUserLogin(){
+        if (userRepositoryService.findByLogin(WebSecurityConfig.getCurrentUsername()).isPresent()){
+            return WebSecurityConfig.getCurrentUsername();
+        }
+        return "Unauthorized";
     }
 }

@@ -7,13 +7,6 @@
 </head>
 <body>
     <div th:insert="blocks/header.html :: header"></div>
-    <div id="signInOutRegister">
-        <a href="/registration"><h3>Зарегистрироваться</h3></a>
-        <a href="/login"><h3>Войти</h3></a>
-        <form th:action="@{/login}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-    </div>
     <div id="userData">
         <h3>About me:</h3>
         <table border="1">
@@ -33,6 +26,7 @@
     <div id="add">
         <form action="/account/add_training" method="post">
             <div id="addTr">
+                <h3>Add training:</h3>
                 <table>
                     <thead>
                     <tr>

@@ -3,20 +3,21 @@
 <link th:href="@{/style/css/style.css}" rel="stylesheet" />
 <body>
     <div th:fragment="header" id="container_header">
-        <a id="nameApp" href="/"><h1 id="app.name">SimpleRun</h1></a>
-        <div id="header_weather" th:insert="~{blocks/weather.html :: weather}"></div>
+        <div id="header">
+            <div id="header_weather" th:insert="~{blocks/weather.html :: weather}"></div>
+            <div><a id="name_app" href="/"><h1>SimpleRun</h1></a></div>
+            <div id="login_block">
+                <div><a href="/registration">SignIn</a></div>
+                <div><a href="/login">SignUp</a></div>
+                <div><a href="/account" th:text="${userLogin}"></a></div>
+                <div><a href="/login">LogOut</a></div>
+            </div>
+        </div>
         <div id="menu">
-            <a class="menu_token" href="/calculate"><div>Калькулятор бега</div></a>
-            <a class="menu_token" href="/account"><div>Личный кабинет</div></a>
-            <a class="menu_token" href="/"><div>Статьи</div></a>
-            <a class="menu_token" href="/"><div>О проекте</div></a>
-            <a class="menu_token" href="/">
-                <div>
-                    <form th:action="@{/login}" method="post">
-                        <input type="submit" value="Sign Out"/>
-                    </form>
-                </div>
-            </a>
+            <a class="menu_token" href="/calculate"><div>Run calculator</div></a>
+            <a class="menu_token" href="/account"><div>Your account</div></a>
+            <a class="menu_token" href="/"><div>Runner chat</div></a>
+            <a class="menu_token" href="/"><div>About project</div></a>
         </div>
     </div>
 </body>

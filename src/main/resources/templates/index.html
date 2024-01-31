@@ -7,22 +7,31 @@
 </head>
 <body>
     <div th:insert="blocks/header.html :: header"></div>
-    <a href="/registration"><h3>Зарегистрироваться</h3></a>
-    <a href="/login"><h3>Войти</h3></a>
-    <form th:action="@{/login}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
-
-    <div id="top_users">
-        <h3>Top runners:</h3>
-        <table class="countLines">
-            <tr th:each="i,stat : ${userTop}">
-                <td th:text="${stat.count}"></td>
-                <td th:text="${i.name}"></td>
-                <td th:text="${i.distanceTotal}"></td>
-            </tr>
-        </table>
-        <br><br>
+    <div id="chat_top">
+        <div id="top_users">
+            <h3>Top runners:</h3>
+            <table class="countLines">
+                <tr th:each="i,stat : ${userTop}">
+                    <td th:text="${stat.count}"></td>
+                    <td th:text="${i.name}"></td>
+                    <td th:text="${i.distanceTotal}"></td>
+                </tr>
+            </table>
+            <br><br>
+        </div>
+        <div id="chat">
+            <form action="/send_message" method="post">
+                <textarea id="message_input" maxlength="255" rows="3" name="text_message"></textarea>
+                <button type="submit">Send message</button>
+            </form>
+            <div id="messages">
+                <p th:each="i : ${messages}">
+                    <span th:text="${i.sender}"></span>
+                    <span th:text="${i.text}"></span>
+                </p>
+            </div>
+        </div>
     </div>
+
 </body>
 </html>
