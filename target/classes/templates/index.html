@@ -12,5 +12,17 @@
     <form th:action="@{/login}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
+
+    <div id="top_users">
+        <h3>Top runners:</h3>
+        <table class="countLines">
+            <tr th:each="i,stat : ${userTop}">
+                <td th:text="${stat.count}"></td>
+                <td th:text="${i.name}"></td>
+                <td th:text="${i.distanceTotal}"></td>
+            </tr>
+        </table>
+        <br><br>
+    </div>
 </body>
 </html>

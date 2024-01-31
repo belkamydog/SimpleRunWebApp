@@ -25,8 +25,6 @@ public class WebSecurityConfig {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private DataSource dataSource;
-    @Autowired
-    private User user;
 
     @Bean
     UserDetailsManager users(DataSource dataSource) {

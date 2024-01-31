@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <link th:href="@{/style/css/style.css}" rel="stylesheet" />
 <head>
     <meta charset="UTF-8">
@@ -7,35 +7,143 @@
 </head>
 <body>
     <div th:insert="blocks/header.html :: header"></div>
-    <a href="/registration"><h3>Зарегистрироваться</h3></a>
-    <a href="/login"><h3>Войти</h3></a>
-    <form th:action="@{/login}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
-    <h3>About user:</h3>
-    <p th:text="${aboutUser}"></p>
-    <h3>Training List:</h3>
-    <table>
-        <tr th:each="i : ${trainings}">
-            <td th:text="${i}"></td>
-        </tr>
-    </table>
-    <br><br>
-    <div>
-        <h2>Добавить тренировку</h2>
-        <form action="/account/add_training" method="post">
-            <div>date<input type="date" name="date"></div><br>
-            <div>час <input type="number" id="calc_hours" name="time_hour" value="0" min="0" max="24"></div><br>
-            <div>мин <input type="number" id="calc_minutes" name="time_min" value="0" min="0" max="60"></div><br>
-            <div>сек <input type="number" id="calc_seconds" name="time_sec" value="0" min="0" max="60"></div><br>
-            <h4>Дистанция</h4>
-            <div>км <input type="number" id="calc_distance_km" name="distance_km" value="0" min="0" max="1000"></div><br>
-            <div>метров <input type="number" id="calc_distance_met" name="distance_meters" value="0" min="0" max="1000"></div><br>
-            <div>description <input type="text" id="desc" name="description" value=" "></div><br>
-            <input type="submit">
+    <div id="signInOutRegister">
+        <a href="/registration"><h3>Зарегистрироваться</h3></a>
+        <a href="/login"><h3>Войти</h3></a>
+        <form th:action="@{/login}" method="post">
+            <input type="submit" value="Sign Out"/>
         </form>
     </div>
-
-
+    <div id="userData">
+        <h3>About me:</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Total distance</th>
+                </tr>
+            </thead>
+            <tr>
+                <td th:text="${aboutUser.name}"></td>
+                <td th:text="${aboutUser.distanceTotal}"></td>
+            </tr>
+        </table>
+        <a href="change_password">change password</a>
+    </div>
+    <div id="add">
+        <form action="/account/add_training" method="post">
+            <div id="addTr">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Run time</th>
+                        <th>Distance</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th id="dateTr">
+                            <table border="1">
+                                <thead>
+                                <tr>
+                                    <th>date of your training</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th><input type="date" name="date" value=""></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </th>
+                        <th id="timeRun">
+                            <table border="1">
+                                <thead>
+                                <tr>
+                                    <th>hour</th>
+                                    <th>minutes</th>
+                                    <th>seconds</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th><input type="number" name="time_hour" value="0" min="0" max="24"></th>
+                                    <th><input type="number" name="time_min" value="0" min="0" max="60"></th>
+                                    <th><input type="number" name="time_sec" value="0" min="0" max="60"></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </th>
+                        <th id="distance">
+                            <table border="1">
+                                <thead>
+                                <tr>
+                                    <th>km</th>
+                                    <th>meters</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th><input type="number" name="distance_km" value="0" min="0" max="1000"></th>
+                                    <th><input type="number" name="distance_meters" value="0" min="0" max="1000"></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </th>
+                        <th id="description">
+                            <table border="1">
+                                <thead>
+                                <tr>
+                                    <th>Describe your training</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th><input type="text" name="description" value=" "></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit" name="Add training">Add training</button>
+            </div>
+        </form>
+    </div>
+    <div id="trainings">
+    <h3>My trainings list:</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>date</th>
+                    <th>distance</th>
+                    <th>pace</th>
+                    <th>time</th>
+                    <th>speed</th>
+                    <th>description</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="i : ${trainings}">
+                    <td th:text="${i.date}"></td>
+                    <td th:text="|${i.distanceKm}km ${i.distanceMeters}m|"></td>
+                    <td th:text="|${i.paceMinute}:${i.paceSeconds} min/km|"></td>
+                    <td th:text="|${i.timeHour}:${i.timeMinute}:${i.timeSeconds}|"></td>
+                    <td th:text="|${i.speed}km/h|"></td>
+                    <td th:text="${i.description}"></td>
+                    <td>
+                        <form th:action="@{/account/delete_training/{id}(id=${i.id})}" method="post">
+                            <button type="submit">delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br><br>
 </body>
 </html>

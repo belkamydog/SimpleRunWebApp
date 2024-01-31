@@ -27,6 +27,7 @@ public class MainPageController {
     public String mainPage(Model model){
         model.addAttribute("weather", weather.getRootWeather());
         model.addAttribute("temperature", weather.getTemperature());
+        model.addAttribute("userTop", userRepositoryService.getTopUsers()); // not safe!!!!
         return "index";
     }
 

@@ -21,6 +21,10 @@ public class TrainingRepositoryService {
         return traningRepository.findAllByUserId(userRepositoryService.findByLogin(WebSecurityConfig.getCurrentUsername()).get().getId());
     }
 
+    public void deleteTraining(Long id){
+        traningRepository.deleteById(id);
+    }
+
     public void saveTraining(Training training){
         traningRepository.save(training);
     }

@@ -18,6 +18,7 @@ public class User {
     private String name;
     private String password;
     private boolean signIn;
+    private float distanceTotal;
 
     public User(String login, String password){
         this.name = login;
